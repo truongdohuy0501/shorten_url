@@ -1,0 +1,6 @@
+h2 Short URL
+= form_for @url do |f|
+  - @url.errors.full_messages.each do |msg|
+    = msg
+  = f.text_field :original_url, size: '90%'
+  = f.submit :submit
