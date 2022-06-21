@@ -31,7 +31,6 @@ class ShortUrl < ApplicationRecord
 
   def sanitize
     self.original_url.strip!
-    byebug
     self.sanitize_url = self.original_url.downcase.gsub /(https?:\/\/|(www\.))/, ""
     self.sanitize_url = "http://#{self.sanitize_url}"
   end

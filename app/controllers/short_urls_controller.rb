@@ -11,7 +11,6 @@ class ShortUrlsController < ApplicationController
 
   def create
     @url = ShortUrl.new short_urls_params
-    byebug
     @url.sanitize
     if @url.new_url?
       if @url.save
@@ -27,7 +26,6 @@ class ShortUrlsController < ApplicationController
   end
 
   def shorted
-    byebug
     host = request.host_with_port
     @original_url = @url.sanitize_url
     @shorted_url = [host, @url.shorted_url].join "/"
