@@ -17,6 +17,7 @@ test:
   database: shorten_url_test
 
 production:
+  uri: <%= ENV['DATABASE_URL'] %>
   adapter: postgresql
   database: shorten_url_pro
   pool: 5
