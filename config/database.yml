@@ -17,5 +17,7 @@ test:
   database: shorten_url_test
 
 production:
-  <<: *default
+  adapter: postgresql
   database: shorten_url_pro
+  pool: 5
+  timeout: 5000
