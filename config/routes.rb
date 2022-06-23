@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root to: "short_urls#index"
+  root to: "short_urls#encode"
   get "/encode", to: "short_urls#encode"
   get "/decode", to: "short_urls#decode"
   get "shorted/:shorted_url", to: "short_urls#shorted", as: :shorted
