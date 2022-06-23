@@ -1,0 +1,11 @@
+nav.navbar.navbar-expand-lg.navbar-light.bg-light data-controller="form" data-form-target="menu"
+  .container-fluid
+    a.navbar-brand href="#"  TShort URL
+    button.navbar-toggler aria-controls="navbarSupportedContent" aria-expanded="false" aria-label=("Toggle navigation") data-bs-target="#navbarSupportedContent" data-bs-toggle="collapse" type="button" 
+      span.navbar-toggler-icon
+    #navbarSupportedContent.collapse.navbar-collapse
+      ul.navbar-nav.me-auto.mb-2.mb-lg-0
+        li.nav-item data-action="click->form#changePage" data-form-target="changePageEncode"
+          a.nav-link aria-disabled="true" href="/encode"  aria-current="page" Encode
+        li.nav-item data-action="click->form#changePage" data-form-target="changePageDecode"
+          a.nav-link aria-disabled="true" href="/decode" tabindex="-1" Decode

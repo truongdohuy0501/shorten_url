@@ -1,0 +1,20 @@
+// Nav menu
+= render partial: 'menu'
+
+main
+  section
+    h1 Your shortened URL
+    p Copy the shortened link and share it in messages, texts, posts, websites and other locations.
+
+  section#urlbox
+    .form__info#form_encode data-controller="form" data-form-target="formEncode"
+      = text_field_tag :encode_url, '',{ id: 'encode_url', class: "form-control", 'data-form-target': 'encodeUrl' }
+      #formbutton
+        button.button__submit type="button" data-action="click->form#encodeUrl" data-form-target="buttonEncodeSubmit" Submit
+
+    p.boxtextleft
+      span#error_encode_url
+      br
+      span#resutl_encode_url
+    
+= render partial: 'footer'        

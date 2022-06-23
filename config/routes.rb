@@ -1,3 +1,8 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  root to: "short_urls#encode"
+  get "/encode", to: "short_urls#encode"
+  get "/decode", to: "short_urls#decode"
+  get "shorted/:shorted_url", to: "short_urls#shorted", as: :shorted
+  post 'decode_url', to: 'short_urls#decode_shorted_url'
+  post 'encode_url', to: 'short_urls#create'
 end
