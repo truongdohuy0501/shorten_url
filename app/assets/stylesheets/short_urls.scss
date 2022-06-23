@@ -78,6 +78,9 @@ main {
     #error_encode_url {
       color:red
     }
+    #resutl_decode_url {
+      overflow-wrap: break-word;
+    }
   }
 }
 
@@ -105,4 +108,8 @@ footer {
   ul {
     list-style: none;
   }
+}
+
+.nav-link:hover {
+  background-color: #eee;
 }

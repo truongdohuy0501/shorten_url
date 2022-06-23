@@ -21,10 +21,10 @@ RSpec.describe ShortUrl, type: :model do
     it { should validate_length_of(:shorted_url) }
   end
 
-  context 'shortened url record for requested url does not exist' do
+  context "shortened url record for requested url does not exist" do
     let(:expected_url) { Faker::Internet.url }
     let(:short_url) { ShortUrl.create(original_url: expected_url) }
-    it 'creates a shortened url record for the url' do
+    it "creates a shortened url record for the url" do
       expect(short_url.original_url).to eq expected_url
       expect(short_url.shorted_url.length).to eq 6
     end

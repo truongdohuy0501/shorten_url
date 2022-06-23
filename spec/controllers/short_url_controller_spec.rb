@@ -3,10 +3,10 @@ require "rails_helper"
 RSpec.describe ShortUrlsController, type: :controller do
   let(:destination) { Faker::Internet.url }
 
-  describe 'GET #index' do
+  describe "GET #index" do
     before { get :index }
     it { expect(response).to have_http_status(:success) }
-    it { should render_template('index') }
+    it { should render_template("index") }
   end
 
   describe "#create" do
@@ -29,14 +29,17 @@ RSpec.describe ShortUrlsController, type: :controller do
       }
       post :create, params: params
 
-      expect(response.header["X-Frame-Options"]).to eq('SAMEORIGIN')
+      expect(response.header["X-Frame-Options"]).to eq("SAMEORIGIN")
     end
   end
 
   describe "#create with long url" do
-    destination = 'https://translate.google.com/?sl=auto&tl=en&text=Lorem%20ipsum%20dolor%20sit%20amet%2C%20consectetur%20
-           adipiscing%20elit.%20Nulla%20accumsan%20erat%20id%20lorem%20suscipit%2C%20vel%20molestie%20libero%20fermentum.%20
-           Nullam%20quis%20ipsum%20orci.%20Aliquam%20vestibulum%20nunc%20in%20venenatis%20aliquet.%20Pellentesque%20ut%20rhoncus.&op=translate'
+    destination = "https://translate.google.com/?sl=auto&tl=en&text=Lorem%20
+           ipsum%20dolor%20sit%20amet%2C%20consectetur%20
+           adipiscing%20elit.%20Nulla%20accumsan%20erat%20id%20lorem%
+           20suscipit%2C%20vel%20molestie%20libero%20fermentum.%20
+           Nullam%20quis%20ipsum%20orci.%20Aliquam%20vestibulum%20nunc%20in%20venenatis%20aliquet.%20
+           Pellentesque%20ut%20rhoncus.&op=translate"
     before { @shortened = ShortUrl.create(original_url: destination)}
     it do
       params = {
@@ -45,7 +48,7 @@ RSpec.describe ShortUrlsController, type: :controller do
       post :create, params: params
 
       expect(response).to have_http_status(:success)
-      expect(response.content_type == 'application/vnd.api+json')
+      expect(response.content_type == "application/vnd.api+json")
       expect(JSON(response.body)["error"]["message"]).to eq("Url is too long")
     end
   end
@@ -59,7 +62,7 @@ RSpec.describe ShortUrlsController, type: :controller do
       }
       get :shorted, params: params
       expect(response).to have_http_status(200)
-      should render_template('shorted')
+      should render_template("shorted")
     end
   end
 end

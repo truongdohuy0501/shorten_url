@@ -16,7 +16,7 @@ class ShortUrlsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should create short_url" do
-    assert_difference('ShortUrl.count') do
+    assert_difference("ShortUrl.count") do
       post short_urls_url, params: { short_url: {  } }
     end
 
@@ -39,7 +39,7 @@ class ShortUrlsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should destroy short_url" do
-    assert_difference('ShortUrl.count', -1) do
+    assert_difference("ShortUrl.count", -1) do
       delete short_url_url(@short_url)
     end
 

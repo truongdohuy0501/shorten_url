@@ -1,20 +1,24 @@
-class ShortUrlsController < ApplicationController
-  before_action :find_url, only: [:show, :shorted]
+# ShortUrlsController
 
-  SHORT_URL = 'shorted'.freeze
+class ShortUrlsController < ApplicationController
+  before_action :find_url, only: [:shorted]
+
+  SHORT_URL = "shorted".freeze
 
   def index
     @url = ShortUrl.new
   end
   
-  def encode;end
+  def encode
+  end
 
-  def decode;end
+  def decode
+  end
 
   def decode_shorted_url
     @url = ShortUrl.find_by_shorted_url(shorted_params)
 
-    return render json: { error: { message: 'Url does not existed' } } if @url.nil?
+    return render json: { error: { message: "Url does not existed" } } if @url.nil?
     render json: { original_url: @url.original_url }
   end
 
@@ -22,19 +26,16 @@ class ShortUrlsController < ApplicationController
     @url = ShortUrl.new short_urls_params
     @url.sanitize
 
-    return render json: { error: { message: 'Url is too long' } } if @url.sanitize.length > 255
+    return render json: { error: { message: "Url is too long" } } if @url.sanitize.length > 255
     host = request.host_with_port
 
     if @url.new_url?
-      if @url.save
-        end_link = [host, SHORT_URL, @url.shorted_url].join "/"
-        return render json: { shorted_url: "#{end_link}" }
-      else
-        return render json: { error: { message: 'The URL is not valid, make sure the URL you tried to shorten is correct' } }
-      end
+      return render json: { error: { message: "The URL is not valid, make sure the URL you tried to shorten is correct" } } unless @url.save
+      end_link = [host, SHORT_URL, @url.shorted_url].join "/"
+      render json: { shorted_url: end_link }
     else
       end_link = [host, SHORT_URL, @url.find_duplicate.shorted_url].join "/"
-      return render json: { duplicate: { message: 'A short link for this URL is existed!' }, shorted_url: "#{end_link}"}
+      render json: { duplicate: { message: "A short link for this URL is existed!" }, shorted_url: end_link}
     end
   end
 

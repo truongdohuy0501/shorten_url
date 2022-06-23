@@ -15,7 +15,7 @@
 # See https://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 RSpec.configure do |config|
   require "simplecov"
-  require 'shoulda/matchers'
+  require "shoulda/matchers"
 
   SimpleCov.formatters = [
     SimpleCov::Formatter::HTMLFormatter,
