@@ -17,8 +17,10 @@ test:
   database: shorten_url_test
 
 production:
-  uri: <%= ENV['DATABASE_URL'] %>
+  <<: *default
   adapter: postgresql
-  database: shorten_url_pro
+  username: <%= ENV['PRODUCTION_DB_USERNAME'] %>
+  password: <%= ENV['PRODUCTION_DB_PASSWORD'] %>
+  database: <%= ENV['PRODUCTION_DB_NAME'] %>
   pool: 5
   timeout: 5000
