@@ -1,0 +1,20 @@
+// Nav menu
+= render partial: 'menu'
+
+main
+  section
+    h1 Decode Your shortened URL
+    p Copy the shortened link and share it in messages, texts, posts, websites and other locations.
+
+  section#urlbox
+    .form__info#form_encode data-controller="form" data-form-target="formDecode"
+      = text_field_tag :decode_url, '',{ id: 'decode_url', class: "form-control", 'data-form-target': 'decodeUrl' }
+      #formbutton
+        button.button__submit type="button" data-action="click->form#decodeUrl"Submit
+
+    p.boxtextleft
+      span#error_decode_url
+      br
+      span#resutl_decode_url
+    
+= render partial: 'footer'        
