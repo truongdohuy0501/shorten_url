@@ -1,24 +1,35 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## System dependencies
+ * Ruby 3.0.1 + mysql 8\
 
-Things you may want to cover:
+## Set up
+ * To use rbenv and Homebrew, skip to "Set up with rbenv and Homebrew" section
 
-* Ruby version
+## Set up with rbenv and Homebrew
+### prepare middleware
+ * install Homebrew https://brew.sh/index_ja
+ * `brew install rbenv`
+ * `brew install ruby-build`
+ * `brew install mysql@8.0`
+ * `echo 'export PATH="/usr/local/opt/mysql@8.0/bin:$PATH"' >> ~/.bash_profile`
+ * `source ~/.bash_profile`
 
-* System dependencies
+### install libraries
+ * `bundle install --path vendor/bundle`
 
-* Configuration
+## System dependencies
+ * yarn 1.22.x
 
-* Database creation
+## Setup & Start
+ * `brew install yarn`
+ * `yarn add jquery` (if needed)
+ * `yarn add bootstrap@next @popperjs/core ` (if needed)
+### Setup database
+ * `mysql.server start`
+ * `bundle exec rails db:create`
+ * `bundle exec rails db:migrate`
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+### run server
+ * `bundle exec rails s`
+ * `0.0.0.0:3000`
