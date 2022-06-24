@@ -28,7 +28,7 @@ export default class extends Controller {
     event.preventDefault()
     return $.ajax({
       method: 'POST',
-      url: '/encode_url',
+      url: '/api/v1/short_urls/encode_shorted_url',
       dataType: "json",
       data: {
         authenticity_token: $('[name="csrf-token"]')[0].content,
@@ -61,7 +61,7 @@ export default class extends Controller {
     event.preventDefault()
     return $.ajax({
       method: 'POST',
-      url: '/decode_url',
+      url: '/api/v1/short_urls/decode_shorted_url',
       dataType: "json",
       data: {
         authenticity_token: $('[name="csrf-token"]')[0].content,
