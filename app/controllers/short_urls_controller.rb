@@ -1,12 +1,14 @@
 # ShortUrlsController
 
 class ShortUrlsController < ApplicationController
-  before_action :find_url, only: [:shorted]
-
-  SHORT_URL = "shorted".freeze
+  before_action :find_url, only: [:show, :shorted]
 
   def index
     @url = ShortUrl.new
+  end
+
+  def show
+    redirect_to @url.sanitize_url
   end
   
   def encode
@@ -15,27 +17,24 @@ class ShortUrlsController < ApplicationController
   def decode
   end
 
-  def decode_shorted_url
-    @url = ShortUrl.find_by_shorted_url(shorted_params)
-
-    return render json: { error: { message: "Url does not existed" } } if @url.nil?
-    render json: { original_url: @url.original_url }
-  end
-
   def create
-    @url = ShortUrl.new short_urls_params
+    @url = ShortUrl.new shorted_url_params
     @url.sanitize
-
-    return render json: { error: { message: "Url is too long" } } if @url.sanitize.length > 255
-    host = request.host_with_port
-
+    if @url.sanitize.length > 255
+      flash.now[:error] = "Url is too long"
+      return render :index
+    end
+    
     if @url.new_url?
-      return render json: { error: { message: "The URL is not valid, make sure the URL you tried to shorten is correct" } } unless @url.save
-      end_link = [host, SHORT_URL, @url.shorted_url].join "/"
-      render json: { shorted_url: end_link }
+      if @url.save
+        redirect_to shorted_path @url.shorted_url
+      else
+        flash.now[:error] = "The URL is not valid, make sure the URL you tried to shorten is correct"
+        render :index
+      end
     else
-      end_link = [host, SHORT_URL, @url.find_duplicate.shorted_url].join "/"
-      render json: { duplicate: { message: "A short link for this URL is existed!" }, shorted_url: end_link}
+      flash.now[:notice] = "A short link for this URL is existed!"
+      redirect_to shorted_path @url.find_duplicate.shorted_url
     end
   end
 
@@ -47,20 +46,11 @@ class ShortUrlsController < ApplicationController
   
   private
 
-  def params_permit
-    params.permit!
-  end
-
   def find_url
-    @url = ShortUrl.find_by_shorted_url params[:shorted_url]
+    @url = ShortUrl.find_by_shorted_url params[:short_url]
   end
 
-  def short_urls_params
+  def shorted_url_params
     params.require(:short_url).permit :original_url
-  end
-
-  def shorted_params
-    shorted_params = params.require(:short_url).permit :shorted_url
-    shorted_params[:shorted_url].split("/").last
   end
 end

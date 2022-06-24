@@ -1,4 +1,6 @@
-.main-content
-  div data-controller="form" data-form-target="index"
-    // Nav menu
-    = render partial: 'menu'
+h2 Shorten URL
+= form_for @url do |f|
+  - @url.errors.full_messages.each do |msg|
+    = msg
+  = f.text_field :original_url, size: '90%'
+  = f.submit :submit
