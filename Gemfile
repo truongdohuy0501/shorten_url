@@ -59,7 +59,7 @@ group :development do
   gem 'prettier', require: false
   # Find N+1 queries and report them
   gem 'bullet', '~> 6.0', '>= 6.0.1'
-  
+  gem 'brakeman'
 end
 
 group :test do

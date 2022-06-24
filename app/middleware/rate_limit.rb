@@ -32,7 +32,7 @@ class RateLimit
   private
   def message
     {
-      :message = "You have fired too many requests. Please wait for some time."
+      :message => "You have fired too many requests. Please wait for some time."
     }.to_json
   end
 
@@ -41,9 +41,9 @@ class RateLimit
     time = Time.now.to_i
     time_till_reset = (time + ttl.to_i).to_s
     {
-      "X-Rate-Limit-Limit" =  "60",
-      "X-Rate-Limit-Remaining" = (60 - count.to_i).to_s,
-      "X-Rate-Limit-Reset" = time_till_reset
+      "X-Rate-Limit-Limit": "60",
+      "X-Rate-Limit-Remaining": (60 - count.to_i).to_s,
+      "X-Rate-Limit-Reset": time_till_reset
     }
   end
 end
