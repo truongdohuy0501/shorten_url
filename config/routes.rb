@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   root to: "short_urls#encode"
   get "/index", to: "short_urls#index"
+  get "/show/:short_url", to: "short_urls#show"
   get "/encode", to: "short_urls#encode"
   get "/decode", to: "short_urls#decode"
   get "shorted/:short_url", to: "short_urls#shorted", as: :shorted

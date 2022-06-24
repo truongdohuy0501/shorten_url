@@ -65,4 +65,20 @@ RSpec.describe ShortUrlsController, type: :controller do
       should render_template('shorted')
     end
   end
+
+  describe "#show" do
+    url = Faker::Internet.url
+    before { 
+      @shortened = ShortUrl.create(original_url: url)
+    }
+    it do
+      params = {
+        short_url: @shortened.shorted_url
+      }
+
+      get :show, params: params
+
+      expect(response).to have_http_status(302)
+    end
+  end
 end
