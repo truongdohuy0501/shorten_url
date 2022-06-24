@@ -33,3 +33,12 @@
 ### run server
  * `bundle exec rails s`
  * `0.0.0.0:3000`
+
+
+### Potential attack vectors
+ * DDoS Attack : there is no mechanism to restrict.
+ * Spam : don't implement API key, to protect from the spammers
+ * Authen: currently uses rails' authenticity_token
+ 
+## What scalability issues
+ * We can implement a new API (v2) and integration for use with other FE languages (React, Vue, Angular....)
