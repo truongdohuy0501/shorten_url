@@ -5,8 +5,7 @@ test:
   adapter: test
 
 production: &production
-  url: <%= ENV.fetch("PRODUCTION_REDIS_URL") %>
-  :url:  redis://redistogo:328xxxxxxxxxxxxxd2@dory.redistogo.com:11403/
+  :url:  redis://redistogo:720d4180e6e2bd2835cdc947ef0b305a@spinyfin.redistogo.com:9521/
   :host: spinyfin.redistogo.com
   :port: 9521
   :inline: true
