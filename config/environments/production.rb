@@ -29,6 +29,7 @@ Rails.application.configure do
 
   # Do not fallback to assets pipeline if a precompiled asset is missed.
   config.assets.compile = false
+  config.cache_store = :redis_cache_store, { url: ENV.fetch('redis://redis:6379/0', 'redis://localhost:6379/0'), expires_in: 90.minutes }
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server.
   # config.asset_host = 'http://assets.example.com'

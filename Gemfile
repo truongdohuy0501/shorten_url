@@ -20,6 +20,12 @@ gem 'jbuilder', '~> 2.7'
 # Use Active Model has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
+# Use Redis adapter to run Action Cable in production
+gem 'redis', '~> 4.0'
+gem 'redis-namespace'
+gem 'redis-rails'
+gem 'redis-rack-cache'
+
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
@@ -68,11 +74,6 @@ end
 group :production do
   gem 'pg'
   gem 'rails_12factor', '0.0.2'
-  # Use Redis adapter to run Action Cable in production
-  gem 'redis', '~> 4.0'
-  gem 'redis-namespace'
-  gem 'redis-rails'
-  gem 'redis-rack-cache'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
