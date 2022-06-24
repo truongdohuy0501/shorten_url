@@ -1,5 +1,11 @@
+ruby:
+  original_url = @original_url
+  original_text = original_url.to_s
+  shorted_url = @shorted_url
+  shorted_text = @shorted_url.to_s
+
 h2 Original Url:
-= link_to @original_url, @original_url
+= link_to original_text, original_url
 h2 Shorted Url:
-= link_to @shorted_url, @shorted_url, target: :_blank, rel: [:noopener, :noreferrer]
+= link_to shorted_text, shorted_url, target: :_blank, rel: [:noopener, :noreferrer]
 

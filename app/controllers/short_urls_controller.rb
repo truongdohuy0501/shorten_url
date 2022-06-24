@@ -8,7 +8,8 @@ class ShortUrlsController < ApplicationController
   end
 
   def show
-    redirect_to @url.sanitize_url
+    uri = URI.parse(@url.sanitize_url)
+    redirect_to(uri.to_s)
   end
   
   def encode

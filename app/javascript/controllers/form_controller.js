@@ -50,7 +50,11 @@ export default class extends Controller {
         }
       },
       error: function (response) {
-        $("#error_encode_url").text("Error: " + response)
+        if(response.status === 429) {
+          $("#error_encode_url").text("Error: " + response.responseJSON.error.message)
+        } else {
+          $("#error_encode_url").text("Error: " + response)
+        }
         $("#resutl_encode_url").text("")
       }
     })
